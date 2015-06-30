@@ -4,26 +4,31 @@ import com.atompacman.gladiatos.ai.neuralNet.NeuralNet;
 
 public class NeuralNetGenome extends Genome<Double> {
 
-	private NeuralNet neuralNet;
-	
-	
-	//------------ CONSTRUCTOR ------------\\
+    //======================================= FIELDS =============================================\\
 
-	public NeuralNetGenome(NeuralNet associatedNeuralNet) {
-		this.neuralNet = associatedNeuralNet;
-	}
-	
-	
-	//------------ GETTERS ------------\\
+    private final NeuralNet neuralNet;
 
-	public Double[] getDNA() {
-		Double[] weights = new Double[neuralNet.getDescription().getTotalNbWeigths()];
-		double[] weightsArray = neuralNet.getNetworkWeights();
-		
-		for (int i = 0; i < weightsArray.length; ++i) {
-			weights[i] = weightsArray[i];
-		}
-		
-		return weights;
-	}
+
+    
+    //======================================= METHODS ============================================\\
+
+    //---------------------------------- PUBLIC CONSTRUCTOR --------------------------------------\\
+
+    public NeuralNetGenome(NeuralNet associatedNeuralNet) {
+        this.neuralNet = associatedNeuralNet;
+    }
+
+
+    //--------------------------------------- GETTERS --------------------------------------------\\
+
+    public Double[] getDNA() {
+        Double[] weights = new Double[neuralNet.getDescription().getTotalNbWeigths()];
+        double[] weightsArray = neuralNet.getNetworkWeights();
+
+        for (int i = 0; i < weightsArray.length; ++i) {
+            weights[i] = weightsArray[i];
+        }
+
+        return weights;
+    }
 }

@@ -2,7 +2,7 @@ package com.atompacman.gladiatos.ai.neuralNet;
 
 import java.util.List;
 
-import com.atompacman.gladiatos.ai.util.ListOperations;
+import com.atompacman.toolkat.misc.Collections2;
 
 public abstract class FFNNDescription extends NeuralNetDescription {
 
@@ -19,8 +19,8 @@ public abstract class FFNNDescription extends NeuralNetDescription {
 			NonLinearThresholder thresholder) {
 		
 		super(
-				ListOperations.cumulativeSum(nbNeuronsInLayers), 
-				ListOperations.cumulativeSum(nbWeightsInLayers), 
+				Collections2.sum(nbNeuronsInLayers), 
+				Collections2.sum(nbWeightsInLayers), 
 				nbInputs, 
 				nbNeuronsInLayers.get(nbNeuronsInLayers.size() - 1),
 				thresholder);

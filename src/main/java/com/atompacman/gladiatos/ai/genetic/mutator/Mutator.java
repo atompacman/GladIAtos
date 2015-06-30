@@ -2,34 +2,42 @@ package com.atompacman.gladiatos.ai.genetic.mutator;
 
 import java.util.List;
 
-import com.atompacman.gladiatos.ai.util.RandNumGen;
+import com.atompacman.toolkat.math.Norm;
 
 public abstract class Mutator<T> {
 
-	private final double mutationRate;
-	protected final T maxPerturbation;
-	
-	
-	//------------ CONSTRUCTOR ------------\\
-	
-	public Mutator(double mutationRate, T maxPerturbation) {
-		this.mutationRate = mutationRate;
-		this.maxPerturbation = maxPerturbation;
-	}
-	
-	
-	//------------ MUTATE ------------\\
+    //======================================= FIELDS =============================================\\
 
-	public void mutate(List<T> dna) {
-		for (T element : dna) {
-			if (RandNumGen.nextDouble(0, 1) < mutationRate) {
-				alterElement(element);
-			}
-		}
-	}
-	
-	
-	//------------ ALTER ELEMENT ------------\\
+    private   final Norm mutationRate;
+    protected final T    maxPerturbation;
 
-	protected abstract T alterElement(T element);
+
+    
+    //=================================== ABSTRACT METHODS =======================================\\
+
+    //---------------------------------------- ALTER ---------------------------------------------\\
+    
+    protected abstract T alter(T element);
+
+    
+    
+    //======================================= METHODS ============================================\\
+
+    //---------------------------------- PUBLIC CONSTRUCTOR --------------------------------------\\
+
+    public Mutator(Norm mutationRate, T maxPerturbation) {
+        this.mutationRate    = mutationRate;
+        this.maxPerturbation = maxPerturbation;
+    }
+
+
+    //--------------------------------------- MUTATE ---------------------------------------------\\
+
+    public void mutate(List<T> dna) {
+        for (T element : dna) {
+            if (mutationRate.doUniformRandomTest()) {
+                alter(element);
+            }
+        }
+    }
 }

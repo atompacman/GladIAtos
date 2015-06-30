@@ -5,9 +5,11 @@ import com.atompacman.gladiatos.ai.neuralNet.NeuralNet;
 
 public class NeuralNetIndividual extends Individual<Double> {
 
-	//------------ CONSTRUCTOR ------------\\
+    //======================================= METHODS ============================================\\
 
-	public NeuralNetIndividual(NeuralNet neuralNet) {
-		super(new NeuralNetGenome(neuralNet));
-	}
+    //---------------------------------- PUBLIC CONSTRUCTOR --------------------------------------\\
+
+    public NeuralNetIndividual(NeuralNet neuralNet) {
+        super(new NeuralNetGenome(neuralNet));
+    }
 }

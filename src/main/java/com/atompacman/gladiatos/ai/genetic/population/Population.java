@@ -8,109 +8,104 @@ import com.atompacman.gladiatos.ai.genetic.individual.Individual;
 
 public class Population<T> {
 
-	protected List<Individual<T>> individuals;
+    //======================================= FIELDS =============================================\\
 
-	protected double worstFitness;
-	protected double averageFitness;
-	protected double bestFitness;
-	protected double fitnessStdDev;
-	protected double totalFitness;
+    protected List<Individual<T>> individuals;
 
-	
-	//------------ CONSTRUCTOR ------------\\
-
-	public Population() {
-		this.individuals = new ArrayList<Individual<T>>();
-		resetFitnessStats();
-	}
-	
-	
-	//------------ COMPUTE FITNESS STATS ------------\\
-
-	public void updateFitnessStats() {
-		resetFitnessStats();
-
-		for (int i = 0; i < size(); ++i) {
-			double fitness = getIndividual(i).getFitness();
-			totalFitness += fitness;
-			
-			if (fitness < getWorstFitness()) {
-				worstFitness = fitness;
-			}
-			if (fitness > getBestFitness()) {
-				bestFitness = fitness;
-			}
-		}
-		
-		averageFitness = getTotalFitness() / size();
-		
-		for (int i = 0; i < size(); ++i) {
-			double fitness = getIndividual(i).getFitness();
-			double deviation = fitness - getAverageFitness();
-			fitnessStdDev += + deviation * deviation;
-		}
-		fitnessStdDev = Math.sqrt(fitnessStdDev);
-	}
-		
-	
-	//------------ SORT BY FITNESS ------------\\
-
-	public void sortByFitness() {
-		Collections.sort(individuals);
-	}
-	
-	
-	//------------ GETTERS ------------\\
-
-	public Individual<T> getIndividual(int individualIndex) {
-		checkIndividualIndex(individualIndex);
-		return individuals.get(individualIndex);
-	}
-	
-	public int size() {
-		return individuals.size();
-	}
-	
-	public double getWorstFitness() {
-		return worstFitness;
-	}
-	
-	public double getAverageFitness() {
-		return averageFitness;
-	}
-	
-	public double getBestFitness() {
-		return bestFitness;
-	}
-	
-	public double getFitnessStdDev() {
-		return fitnessStdDev;
-	}
-	
-	public double getTotalFitness() {
-		return totalFitness;
-	}
-	
-	
-	//------------ SETTERS ------------\\
-
-	public void resetFitnessStats() {
-		worstFitness = Double.MAX_VALUE;
-		averageFitness = 0;
-		bestFitness = -Double.MAX_VALUE;
-		fitnessStdDev = 0;
-		totalFitness = 0;
-	}
+    protected double worstFitness;
+    protected double averageFitness;
+    protected double bestFitness;
+    protected double fitnessStdDev;
+    protected double totalFitness;
 
 
-	//------------ PRIVATE UTILS ------------\\
 
-	protected void checkIndividualIndex(int individualIndex) {
-		if (individualIndex < 0 || individualIndex >= size()) {
-			throw new IllegalArgumentException("Invalid individual index \"" + individualIndex 
-					+ "\": Population has " + size() + " individuals.");
-		}
-	}
+    //======================================= METHODS ============================================\\
+
+    //---------------------------------- PUBLIC CONSTRUCTOR --------------------------------------\\
+
+    public Population() {
+        this.individuals = new ArrayList<Individual<T>>();
+        resetFitnessStats();
+    }
 
 
+    //-------------------------------- COMPUTE FITNESS STATS -------------------------------------\\
+
+    public void updateFitnessStats() {
+        resetFitnessStats();
+
+        for (Individual<T> individual : individuals) {
+            double fitness = individual.getFitness();
+            totalFitness += fitness;
+
+            if (fitness < worstFitness) {
+                worstFitness = fitness;
+            }
+            if (fitness > bestFitness) {
+                bestFitness = fitness;
+            }
+        }
+
+        averageFitness = totalFitness / individuals.size();
+
+        for (Individual<T> individual : individuals) {
+            double deviation = individual.getFitness() - averageFitness;
+            fitnessStdDev += deviation * deviation;
+        }
+        fitnessStdDev = Math.sqrt(fitnessStdDev);
+    }
+
+
+    //----------------------------------- SORT BY FITNESS ----------------------------------------\\
+
+    public void sortByFitness() {
+        Collections.sort(individuals);
+    }
+
+
+    //--------------------------------------- GETTERS --------------------------------------------\\
+
+    public Individual<T> getIndividual(int individualIndex) {
+        if (individualIndex < 0 || individualIndex >= size()) {
+            throw new IllegalArgumentException("Invalid individual index \"" + individualIndex 
+                    + "\": Population has " + size() + " individuals.");
+        }
+        return individuals.get(individualIndex);
+    }
+
+    public int size() {
+        return individuals.size();
+    }
+
+    public double getWorstFitness() {
+        return worstFitness;
+    }
+
+    public double getAverageFitness() {
+        return averageFitness;
+    }
+
+    public double getBestFitness() {
+        return bestFitness;
+    }
+
+    public double getFitnessStdDev() {
+        return fitnessStdDev;
+    }
+
+    public double getTotalFitness() {
+        return totalFitness;
+    }
+
+
+    //--------------------------------------- SETTERS --------------------------------------------\\
+
+    public void resetFitnessStats() {
+        worstFitness    = Double.MAX_VALUE;
+        averageFitness  = 0;
+        bestFitness     = -Double.MAX_VALUE;
+        fitnessStdDev   = 0;
+        totalFitness    = 0;
+    }
 }

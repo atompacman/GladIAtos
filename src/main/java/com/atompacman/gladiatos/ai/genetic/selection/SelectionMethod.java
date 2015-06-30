@@ -5,7 +5,9 @@ import com.atompacman.gladiatos.ai.genetic.population.Population;
 
 public abstract class SelectionMethod<T> {
 
-	//------------ SELECT INDIVIDUAL ------------\\
+    //=================================== ABSTRACT METHODS =======================================\\
 
-	public abstract Individual<T> selectIndividual(Population<T> population);
+    //--------------------------------------- SELECT ---------------------------------------------\\
+
+    public abstract Individual<T> select(Population<T> population);
 }

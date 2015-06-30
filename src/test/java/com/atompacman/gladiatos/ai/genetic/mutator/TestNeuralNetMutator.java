@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.atompacman.toolkat.math.Norm;
+
 public class TestNeuralNetMutator {
 
 	@Test
@@ -19,7 +21,7 @@ public class TestNeuralNetMutator {
 			altered.add(value);
 		}
 		
-		Mutator<Double> mutator = NeuralNetMutator.valueOf(1.0, 0.01);
+		Mutator<Double> mutator = new NeuralNetMutator(new Norm(1.0), 0.01);
 		mutator.mutate(altered);
 		
 		for (int i = 0; i < dna.length; ++i) {

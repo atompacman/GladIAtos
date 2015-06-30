@@ -1,6 +1,6 @@
 package com.atompacman.gladiatos.ai.neuralNet;
 
-import com.atompacman.gladiatos.ai.util.RandNumGen;
+import com.atompacman.toolkat.math.RandNumGen;
 
 public class Neuron {
 

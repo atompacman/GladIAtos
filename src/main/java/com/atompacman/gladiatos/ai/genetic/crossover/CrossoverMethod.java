@@ -2,40 +2,31 @@ package com.atompacman.gladiatos.ai.genetic.crossover;
 
 import com.atompacman.gladiatos.ai.genetic.GeneticAlgorithmException;
 import com.atompacman.gladiatos.ai.genetic.individual.Individual;
+import com.atompacman.toolkat.exception.Throw;
 
 public abstract class CrossoverMethod<T> {
-	
-	private static final double DEFAULT_CROSSOVER_RATE = 0.4;
 
-	
-	protected final double crossoverRate;
+    //=================================== ABSTRACT METHODS =======================================\\
 
-	
-	//------------ CONSTRUCTOR ------------\\
+    //-------------------------------------- CROSSOVER -------------------------------------------\\
 
-	public CrossoverMethod() {
-		this(DEFAULT_CROSSOVER_RATE);
-	}
-	
-	public CrossoverMethod(double crossoverRate) {
-		this.crossoverRate = crossoverRate;
-	}
-	
-	
-	//------------ CROSSOVER ------------\\
+    protected abstract void crossover(T[] motherDNA, T[] fatherDNA);
 
-	public void crossover(Individual<T> mother, Individual<T> father) 
-			throws GeneticAlgorithmException {
-		T[] motherDNA = mother.getGenome().getDNA();
-		T[] fatherDNA = father.getGenome().getDNA();
 
-		if (motherDNA.length != fatherDNA.length) {
-			throw new GeneticAlgorithmException("Mother DNA size (" + motherDNA.length 
-					+ ") must match father DNA size (" + fatherDNA.length + ").");
-		}
-		
-		crossover(motherDNA, fatherDNA);
-	}
-	
-	protected abstract void crossover(T[] motherDNA, T[] fatherDNA);
+
+    //======================================= METHODS ============================================\\
+
+    //-------------------------------------- CROSSOVER -------------------------------------------\\
+
+    public final void crossover(Individual<T> mother, Individual<T> father) 
+                                                    throws GeneticAlgorithmException {
+        T[] motherDNA = mother.getGenome().getDNA();
+        T[] fatherDNA = father.getGenome().getDNA();
+
+        if (motherDNA.length != fatherDNA.length) {
+            Throw.a(GeneticAlgorithmException.class, "Mother DNA size (" + motherDNA.length 
+                    + ") must match father DNA size (" + fatherDNA.length + ").");
+        }
+        crossover(motherDNA, fatherDNA);
+    }
 }
