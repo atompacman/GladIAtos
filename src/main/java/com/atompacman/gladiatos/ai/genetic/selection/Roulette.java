@@ -2,14 +2,14 @@ package com.atompacman.gladiatos.ai.genetic.selection;
 
 import com.atompacman.gladiatos.ai.genetic.individual.Individual;
 import com.atompacman.gladiatos.ai.genetic.population.Population;
-import com.atompacman.toolkat.math.RandNumGen;
+import com.atompacman.toolkat.math.RandGen;
 
 public class Roulette<T> extends SelectionMethod<T> {
 
     //--------------------------------------- SELECT ---------------------------------------------\\
 
     public Individual<T> select(Population<T> population) {
-        double slice = RandNumGen.nextDouble(0, 1) * population.getTotalFitness();
+        double slice = RandGen.nextDouble(0, 1) * population.getTotalFitness();
         double cumul = 0;
 
         for (int i = 0; i < population.size(); ++i) {

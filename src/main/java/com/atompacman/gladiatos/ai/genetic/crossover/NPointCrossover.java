@@ -3,7 +3,7 @@ package com.atompacman.gladiatos.ai.genetic.crossover;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.atompacman.toolkat.math.RandNumGen;
+import com.atompacman.toolkat.math.RandGen;
 
 public class NPointCrossover<T> extends CrossoverMethod<T> {
 
@@ -34,7 +34,7 @@ public class NPointCrossover<T> extends CrossoverMethod<T> {
             int newPoint;
             for (int i = 0; i < n; ++i) {
                 do {
-                    newPoint = RandNumGen.nextInt(0, motherDNA.length);
+                    newPoint = RandGen.nextInt(0, motherDNA.length);
                 } while (crossoverPoints.contains(newPoint));
                 crossoverPoints.add(newPoint);
             }

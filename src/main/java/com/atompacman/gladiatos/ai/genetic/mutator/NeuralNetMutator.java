@@ -1,7 +1,7 @@
 package com.atompacman.gladiatos.ai.genetic.mutator;
 
 import com.atompacman.toolkat.math.Norm;
-import com.atompacman.toolkat.math.RandNumGen;
+import com.atompacman.toolkat.math.RandGen;
 
 public class NeuralNetMutator extends Mutator<Double> {
 
@@ -28,6 +28,6 @@ public class NeuralNetMutator extends Mutator<Double> {
     //---------------------------------------- ALTER ---------------------------------------------\\
 
     protected Double alter(Double element) {
-        return element + RandNumGen.nextDouble(-1, 1) * maxPerturbation;
+        return element + RandGen.nextDouble(-1, 1) * maxPerturbation;
     }
 }

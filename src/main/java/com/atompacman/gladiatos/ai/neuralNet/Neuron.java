@@ -1,6 +1,6 @@
 package com.atompacman.gladiatos.ai.neuralNet;
 
-import com.atompacman.toolkat.math.RandNumGen;
+import com.atompacman.toolkat.math.RandGen;
 
 public class Neuron {
 
@@ -36,7 +36,7 @@ public class Neuron {
 		double[] weights = new double[nbWeights];
 		
 		for (int i = 0; i < nbWeights - 1; ++i) {
-			weights[i] = RandNumGen.nextDouble(-INIT_RAND_WEIGHT_RANGE, INIT_RAND_WEIGHT_RANGE);
+			weights[i] = RandGen.nextDouble(-INIT_RAND_WEIGHT_RANGE, INIT_RAND_WEIGHT_RANGE);
 		}
 		weights[nbWeights - 1] = INITIAL_BIAS;
 		
