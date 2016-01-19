@@ -44,12 +44,12 @@ public class NPointCrossover<T> extends CrossoverMethod<T> {
             }
         }
 
-        boolean exchangeOn = true;
+        boolean doCrossover = true;
         for (int i = 0; i < motherDNA.length; ++i) {
             if (crossoverPoints.contains(i)) {
-                exchangeOn = !exchangeOn;
+                doCrossover = !doCrossover;
             }
-            if (exchangeOn) {
+            if (doCrossover) {
                 T motherElem = motherDNA[i];
                 motherDNA[i] = fatherDNA[i];
                 fatherDNA[i] = motherElem;

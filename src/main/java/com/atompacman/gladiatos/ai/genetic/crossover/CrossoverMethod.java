@@ -24,8 +24,8 @@ public abstract class CrossoverMethod<T> {
         T[] fatherDNA = father.getGenome().getDNA();
 
         if (motherDNA.length != fatherDNA.length) {
-            Throw.a(GeneticAlgorithmException.class, "Mother DNA size (" + motherDNA.length 
-                    + ") must match father DNA size (" + fatherDNA.length + ").");
+            Throw.a(GeneticAlgorithmException.class, "Mother DNA size (%d) must match "
+                    + "father DNA size (%d).", motherDNA.length, fatherDNA.length);
         }
         crossover(motherDNA, fatherDNA);
     }

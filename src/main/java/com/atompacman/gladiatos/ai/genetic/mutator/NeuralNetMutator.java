@@ -1,13 +1,13 @@
 package com.atompacman.gladiatos.ai.genetic.mutator;
 
-import com.atompacman.toolkat.math.Norm;
+import com.atompacman.toolkat.math.UNorm;
 import com.atompacman.toolkat.math.RandGen;
 
 public class NeuralNetMutator extends Mutator<Double> {
 
     //====================================== CONSTANTS ===========================================\\
 
-    private static final Norm   DEFAULT_MUTATION_RATE    = new Norm(0.5);
+    private static final UNorm   DEFAULT_MUTATION_RATE    = new UNorm(0.5);
     private static final double DEFAULT_MAX_PERTURBATION = 0.01;
 
 
@@ -20,7 +20,7 @@ public class NeuralNetMutator extends Mutator<Double> {
         super(DEFAULT_MUTATION_RATE, DEFAULT_MAX_PERTURBATION);
     }
     
-    public NeuralNetMutator(Norm mutationRate, double maxPerturbation) {
+    public NeuralNetMutator(UNorm mutationRate, double maxPerturbation) {
         super(mutationRate, maxPerturbation);
     }
 

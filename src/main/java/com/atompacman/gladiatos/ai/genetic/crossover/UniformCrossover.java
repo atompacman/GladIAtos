@@ -1,18 +1,19 @@
 package com.atompacman.gladiatos.ai.genetic.crossover;
 
-import com.atompacman.toolkat.math.Norm;
+import com.atompacman.toolkat.math.RandGen;
+import com.atompacman.toolkat.math.UNorm;
 
 public class UniformCrossover<T> extends CrossoverMethod<T> {
 
     //====================================== CONSTANTS ===========================================\\
 
-    private static final Norm DEFAULT_CROSSOVER_RATE = new Norm(0.4);
+    private static final UNorm DEFAULT_CROSSOVER_RATE = new UNorm(0.4);
 
 
 
     //======================================= FIELDS =============================================\\
 
-    protected final Norm crossoverRate;
+    protected final UNorm crossoverRate;
 
 
 
@@ -24,7 +25,7 @@ public class UniformCrossover<T> extends CrossoverMethod<T> {
         this(DEFAULT_CROSSOVER_RATE);
     }
 
-    public UniformCrossover(Norm crossoverRate) {
+    public UniformCrossover(UNorm crossoverRate) {
         this.crossoverRate = crossoverRate;
     }
 
@@ -33,7 +34,7 @@ public class UniformCrossover<T> extends CrossoverMethod<T> {
 
     protected void crossover(T[] motherDNA, T[] fatherDNA) {	
         for (int i = 0; i < motherDNA.length; ++i) {
-            if (crossoverRate.doUniformRandomTest()) {
+            if (crossoverRate.v() < RandGen.nextDouble(0.0, 1.0)){
                 T motherElem = motherDNA[i];
                 motherDNA[i] = fatherDNA[i];
                 fatherDNA[i] = motherElem;

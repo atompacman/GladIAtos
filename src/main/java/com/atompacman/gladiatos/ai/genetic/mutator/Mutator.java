@@ -2,13 +2,13 @@ package com.atompacman.gladiatos.ai.genetic.mutator;
 
 import java.util.List;
 
-import com.atompacman.toolkat.math.Norm;
+import com.atompacman.toolkat.math.UNorm;
 
 public abstract class Mutator<T> {
 
     //======================================= FIELDS =============================================\\
 
-    private   final Norm mutationRate;
+    private   final UNorm mutationRate;
     protected final T    maxPerturbation;
 
 
@@ -25,7 +25,7 @@ public abstract class Mutator<T> {
 
     //---------------------------------- PUBLIC CONSTRUCTOR --------------------------------------\\
 
-    public Mutator(Norm mutationRate, T maxPerturbation) {
+    public Mutator(UNorm mutationRate, T maxPerturbation) {
         this.mutationRate    = mutationRate;
         this.maxPerturbation = maxPerturbation;
     }
